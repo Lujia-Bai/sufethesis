@@ -6,6 +6,7 @@
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
+%%%%%%%%%%从setup文件中读参数%%%%%%%%
 \SetupKeyvalOptions{
   family=sufe,
   prefix=sufe@,
@@ -81,7 +82,6 @@
   }%
 }
 
-
 \sufe@define@key{
     title, 
     author, 
@@ -90,18 +90,11 @@
     discipline, 
     supervisor,
 }
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%Preliminary definitions, needed by the options
 \LoadClass[]{ctexart}
 \RequirePackage{xcolor}
-% \RequirePackage{greycolour}{HTML}{525252}
-% \RequirePackage{sharelatexcolour}{HTML}{882B21}
-% \RequirePackage{mybluecolour}{HTML}{394773}
-%\RequirePackage{inputenc}
-
-
-
 \RequirePackage{fontenc}
 \RequirePackage{geometry}
 \RequirePackage{changepage}
@@ -127,8 +120,22 @@
 
 %%Body of the class, most of the declarations appear here.
 
+\newcommand{\titleformat}{
 
+\ctexset{
+  section = {
+    name={,、 },number={\chinese{section}},format={\centering\heiti\zihao{3}},afterskip={2ex},beforeskip={2ex}, aftername={}
+  },%出来是 一、标题
+  subsection = {
+    name={(,)},number={\chinese{subsection}},format={\heiti\zihao{4}},afterskip={2ex},beforeskip={2ex},aftername={ }
+  },%出来是 (一) 标题
+  subsubsection = {
+    name={,.},number=\arabic{subsubsection},format={\heiti\zihao{5}},afterskip={2ex},beforeskip={2ex},aftername={ }
+  }%出来是 1.标题
+}
 
+}
+%%%%%%%%%%%%%%%%%%一些小细节%%%%%%%%%%%%%%%
 \numberwithin{figure}{section}% 图片计数是以section为单位，第4章第n个图的意思
 \numberwithin{table}{section}%同上
 
@@ -136,11 +143,14 @@
 \geometry{a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm}
 \renewcommand{\abstractnamefont}{\heiti\zihao{3}}%读汉语拼音就知道在写啥了，摘要标题黑体3号
 \renewcommand{\abstracttextfont}{\songti\zihao{4}}%读汉语拼音就知道在写啥了，摘要内容宋体4号
+
+%%%%%%%目录
 \renewcommand{\contentsname}{\heiti \zihao{3} 目录~\\~\\}
 \renewcommand{\baselinestretch}{1.6}
  %就是一些目录里面空格的小问题， subsubsection的序号不要离标题太远
 \titlecontents{subsubsection}[4em]{\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~}
 
+%%%%%%代码
 %就定义一下代码颜色什么的，然后后面可以直接插入代码文件
 \lstset{language=r,
   numbers=left, %设置行号位置
@@ -163,7 +173,7 @@
 \renewcommand\thefigure{\thesection-\arabic{figure}}%图4-1：%就是这种东西也要调
 \renewcommand\thetable{\thesection-\arabic{table}}%表4-1：%就是这种东西也要调
 
-%%
+%%%%%%%%%Define maketitle to output the cover page containing SUFE logo%%%%%%%%%%%%%%%%%%%
 \renewcommand\maketitle{
     \pagestyle{plain}
 \thispagestyle{empty}
@@ -213,8 +223,6 @@
     name = keywords@en,
   },
 }
-\newcommand{\cabstractname}{摘要}
-\newcommand{\eabstractname}{Abstract}
 
 \RequirePackage{xparse}
 \ExplSyntaxOn
@@ -232,26 +240,17 @@
 }
 \ExplSyntaxOff
 
-% \newcommand\sufe@clist@use[2]{%
-%   \def\sufe@@tmp{}%
-%   \kv@set@family@handler{sufe@clist}{%
-%     % \ifx\sufe@@tmp\@empty
-%     %   \def\sufe@@tmp{#2}%
-%     % \else
-%     %   #2%
-%     % \fi
-%     {##1}%
-%   }%
-%   %\kvsetkeys@expandafter{sufe@clist}{}%
-%   \kvsetkeys{sufe@clist}{LaTeX, 1}%
-% }
+%%%%%%%%%%通过sufesetup命令可以读入关键字并格式化%%%%%
 \newbox\sufe@kw
 \newcommand\sufe@put@keywords[2]{%
   \begingroup
     \setbox\sufe@kw=\hbox{#1}
     \box\sufe@kw#2\par
   \endgroup}
-  
+ %%%%%%%%%%%%%%%% 
+
+ %%%%%%%%%%%%%中文摘要%%%%%%%%%%%%%
+ \newcommand{\cabstractname}{摘要}
 \renewenvironment{abstract}{%
   % \sufe@chapter*[]{\cabstractname} % no tocline
   \section*{\cabstractname}
@@ -260,6 +259,9 @@
     \sufe@clist@use{\sufe@keywords}{；}%
   }%
 }
+
+ %%%%%%%%%%%%%英文摘要%%%%%%%%%%%%%
+\newcommand{\eabstractname}{Abstract}
 \newenvironment{abstract*}{%
   \section*{\eabstractname}
 }{%
