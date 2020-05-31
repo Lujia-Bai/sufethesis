@@ -1,0 +1,168 @@
+\documentclass{SUFEThesis}
+
+
+\input{sufesetup.tex} 
+
+\begin{document}
+
+\ctexset{
+  section = {
+    name={,、 },number={\chinese{section}},format={\centering\heiti\zihao{3}},afterskip={2ex},beforeskip={2ex}, aftername={}
+  },%出来是 一、标题
+  subsection = {
+    name={(,)},number={\chinese{subsection}},format={\heiti\zihao{4}},afterskip={2ex},beforeskip={2ex},aftername={ }
+  },%出来是 (一) 标题
+  subsubsection = {
+    name={,.},number=\arabic{subsubsection},format={\heiti\zihao{5}},afterskip={2ex},beforeskip={2ex},aftername={ }
+  }%出来是 1.标题
+}
+
+\maketitle
+
+\input{abstract.tex}
+
+\thispagestyle{empty}
+\begin{center}
+\zihao{3} \LaTeX Template for SHUFE
+\end{center}
+
+\begin{center}
+\zihao{3}{Abstract}
+\end{center}
+ 
+\begin{adjustwidth}{1cm}{1cm}
+\hspace{1.5em}
+An abstract of a dissertation is a summary and extraction of research work
+and contributions. Included in an abstract should be description of research
+topic and research objective, brief introduction to methodology and research
+process, and summarization of conclusion and contributions of the
+research. An abstract should be characterized by independence and clarity and
+carry identical information with the dissertation. It should be such that the
+general idea and major contributions of the dissertation are conveyed without
+reading the dissertation.
+
+An abstract should be concise and to the point. It is a misunderstanding to
+make an abstract an outline of the dissertation and words ``the first
+chapter'', ``the second chapter'' and the like should be avoided in the
+abstract.
+
+Key words are terms used in a dissertation for indexing, reflecting core
+information of the dissertation. An abstract may contain a maximum of 5 key
+words, with semi-colons used in between to separate one another.\\
+\\
+\textbf{Key words:} thesis, template, \LaTeX, \TeX, CJK 
+\end{adjustwidth}
+
+\newpage
+
+\thispagestyle{empty}
+\zihao{5}
+\heiti
+\tableofcontents
+\newpage
+\songti
+
+
+\setcounter{page}{1}
+\section{前言}
+\subsection{研究背景及意义}
+
+\subsection{研究现状与评价}
+
+
+\subsection{本文贡献与创新点}
+
+\subsection{文章基本思路与结构}
+
+
+\section{检验方法概述}
+
+\subsection{参数检验方法}
+
+\subsubsection{检验方法一}
+\subsubsection{检验方法二}
+
+\subsection{非参数检验方法}
+
+\subsubsection{检验方法一}
+\subsubsection{检验方法二}
+
+\section{数值模拟}
+%%%%size
+%rho theta
+%non-stationarity tvFARIMA: 1st order 2nd order with trend
+%T
+\subsection{模型介绍}
+考虑模型\eqref{eq1}
+\begin{equation}
+y_i = \mu(t_i) + e_i, \quad i = 1,2,\dots n,
+\label{eq1}
+\end{equation}
+如果需要换行
+\begin{equation}
+  \begin{aligned}
+  y_i &= \mu(t_i) + e_i\\
+      &= \mu(t_i) + e_i\\
+  \end{aligned}
+\end{equation}
+
+
+\subsection{构建指标体系}
+
+
+\subsection{模拟过程及结果分析}
+数据图片表格之外还要有分析！不会用就去百度BING一下，这里介绍一些简单操作。
+\subsubsection{图片}
+一张图片，网上也有其他方法（不喜勿喷）
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \caption{实验数据的图片}
+\end{figure} 
+多张图片，网上也有其他方法（不喜勿喷)，图 \ref{fig:hanhan} 所示。
+\begin{figure}
+  \centering
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \caption{实验数据的图片}
+  \label{fig:hanhan}
+\end{figure} 
+
+
+\section{实证分析}
+%S&P 500 daily returns. 
+\subsection{数据介绍}
+介绍数据背景相关文献，表格图片计算结果以及结合实际的深刻分析。
+
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.45\textwidth]{data/IBM_LR.png}
+%   \includegraphics[width=0.45\textwidth]{data/IBM_SLR.png}
+%   \caption{左图：IBM股票从2005年7月14日到2013年8月30日的对数收益率；右图：IBM股票从2005年7月14日到2013年8月30日的平方对数收益率}
+% \end{figure}
+
+\subsection{数据分析}
+
+
+\section{结论与局限性}
+\subsection{结论}
+总结全文
+\subsection{局限性}
+不足和未来发展方向
+
+\newpage
+\bibliographystyle{gbt7714-numerical}
+\bibliography{main}
+ 
+\section{附录}
+一些不想放在正文的细节。
+\subsection{核心代码}
+\subsubsection{检验统计量计算}
+% \lstinputlisting[language=r]{Statistic.R}
+
+% \includepdf[pages={1}]{声明.pdf} 
+
+
+\end{document}
