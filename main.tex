@@ -12,15 +12,10 @@
 \input{abstract.tex}
 
 \newpage
-
-\zihao{5}
-\heiti
 \tableofcontents
 \newpage
-\songti
+\setcounter{page}{1}%开始正文第一页
 
-
-\setcounter{page}{1}
 \section{序言}
 序言应说明本课题的意义、目的、主要研究内容、范围及应解决的问题。
 \subsection{研究背景及意义}
@@ -76,6 +71,32 @@
 % \end{figure} 
 \subsubsection{表格}
 表格按章顺序编号，如表3-1为第三章第一表。表应有标题，表内必须按规定的符号注明单位。
+对表格来说并排表格既可以像图~\ref{tab:parallel1}、
+表\ref{tab:parallel2} 使用小页环境，也可以如表\ref{tab:subtable} 使用子表格来做。
+
+\begin{table}[htbp]
+\noindent\begin{minipage}{0.5\textwidth}
+\centering
+\caption{第一个并排子表格}
+\label{tab:parallel1}
+\begin{tabular}{p{2cm}p{2cm}}
+\toprule[1.5pt]
+111 & 222 \\\midrule[1pt]
+222 & 333 \\\bottomrule[1.5pt]
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\centering
+\caption{第二个并排子表格}
+\label{tab:parallel2}
+\begin{tabular}{p{2cm}p{2cm}}
+\toprule[1.5pt]
+111 & 222 \\\midrule[1pt]
+222 & 333 \\\bottomrule[1.5pt]
+\end{tabular}
+\end{minipage}
+\end{table}
+
 \subsubsection{公式}
 公式书写应在文中另起一行。并使用英文标点。
 考虑模型\eqref{eq1}

@@ -107,6 +107,9 @@
 \RequirePackage{mathrsfs} 
 \RequirePackage{graphicx}
 % \RequirePackage{cite}
+\RequirePackage{subcaption}
+\RequirePackage{booktabs}
+\RequirePackage{tabu}
 \RequirePackage{listings}
 \RequirePackage{pdfpages}
 \RequirePackage{gbt7714}
@@ -142,14 +145,25 @@
 \numberwithin{figure}{section}% 图片计数是以section为单位，第4章第n个图的意思
 \numberwithin{table}{section}%同上
 
+%英文字体
 \setmainfont{Arial}
+\songti
+%打印要求
+%采用计算机打印一律用A4规格复印纸输出，上下边距为2.5cm，左边距为3cm，右边距为2cm，页脚1.5cm，居中打印页号。
 \geometry{a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm}
 
 %%%%%%%目录
-\renewcommand{\contentsname}{\heiti \zihao{3} 目录~\\~\\}
-\renewcommand{\baselinestretch}{1.6}
- %就是一些目录里面空格的小问题， subsubsection的序号不要离标题太远
-\titlecontents{subsubsection}[4em]{\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~\contentspage}
+\renewcommand\tableofcontents{%
+  \section*{目录}
+  \heiti\@starttoc{toc}\songti
+  \thispagestyle{empty}
+}
+% \renewcommand{\contentsname}{\heiti \zihao{3} 目录~\\~\\}
+% \renewcommand{\baselinestretch}{1.6}
+%  %就是一些目录里面空格的小问题， subsubsection的序号不要离标题太远
+\titlecontents{subsubsection}[4em]{\heiti\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~\contentspage}
+
+
 
 %%%%%%代码
 %就定义一下代码颜色什么的，然后后面可以直接插入代码文件
