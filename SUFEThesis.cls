@@ -83,7 +83,10 @@
 }
 
 \sufe@define@key{
-    title, 
+    title,
+    title* = {
+    name = title@en,
+  },
     author, 
     id, 
     school, 
@@ -103,7 +106,7 @@
 \RequirePackage{amsmath}
 \RequirePackage{mathrsfs} 
 \RequirePackage{graphicx}
-\RequirePackage{cite}
+% \RequirePackage{cite}
 \RequirePackage{listings}
 \RequirePackage{pdfpages}
 \RequirePackage{gbt7714}
@@ -141,14 +144,12 @@
 
 \setmainfont{Arial}
 \geometry{a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm}
-\renewcommand{\abstractnamefont}{\heiti\zihao{3}}%读汉语拼音就知道在写啥了，摘要标题黑体3号
-\renewcommand{\abstracttextfont}{\songti\zihao{4}}%读汉语拼音就知道在写啥了，摘要内容宋体4号
 
 %%%%%%%目录
 \renewcommand{\contentsname}{\heiti \zihao{3} 目录~\\~\\}
 \renewcommand{\baselinestretch}{1.6}
  %就是一些目录里面空格的小问题， subsubsection的序号不要离标题太远
-\titlecontents{subsubsection}[4em]{\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~}
+\titlecontents{subsubsection}[4em]{\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~\contentspage}
 
 %%%%%%代码
 %就定义一下代码颜色什么的，然后后面可以直接插入代码文件
@@ -169,11 +170,12 @@
   showspaces=false %不显示空格
 }
 
-%contents setting
+%图表标号
 \renewcommand\thefigure{\thesection-\arabic{figure}}%图4-1：%就是这种东西也要调
 \renewcommand\thetable{\thesection-\arabic{table}}%表4-1：%就是这种东西也要调
 
 %%%%%%%%%Define maketitle to output the cover page containing SUFE logo%%%%%%%%%%%%%%%%%%%
+%%封页。封页上的内容一律按照统一封面的样张式样打印，必须正 确无误。题目用二号黑体字，其他用四号宋体字。
 \renewcommand\maketitle{
     \pagestyle{plain}
 \thispagestyle{empty}
@@ -191,15 +193,15 @@
   \parindent=4em%
   \hangindent=5em%
   \makebox[3em][l]{题目：}%
-  \zihao{2}%
-  \CJKunderline[skip=false, thickness=0.05em, depth=0.12em]{上海财经大学 \LaTeX 模板}\par
+  \heiti\zihao{2}%二号黑体字
+  \CJKunderline[skip=false, thickness=0.05em, depth=0.12em]{\sufe@title}\par
   }\par
   \vskip 2.5cm%
   \begin{center}
     \newlength{\lenth}
 \settowidth{\lenth}{姓名}
   \parbox{80mm}{
-  {\songti\zihao{3}
+  {\songti\zihao{4}% 四号宋体字
   姓 \hspace*{1.5em} 名 \uline{\makebox[60mm]{\sufe@author}}\\[5mm]
   \parindent=4em%
   学 \hspace*{1.5em} 号 \uline{\makebox[60mm]{\sufe@id}}\\[5mm]
@@ -210,13 +212,15 @@
   \end{center}
   \vskip 3cm%
   \begin{center}
-    \songti\zihao{3}
+    \songti\zihao{4}%  四号宋体字
     定稿日期 \hspace*{1.5em} 2020\hspace*{0.5em}年\hspace*{0.5em}5\hspace*{0.5em}月
   \end{center}
 \end{titlepage}
 }
 
-%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%
+%%%%%%%%%%%%% Abstract  摘要%%%%%%%%%%%%%%
+%题目和摘要。论文(设计)题目为三号黑体字，可以分为1或2行 居中打印。论文(设计)题目下空一项居中打印“摘要”二字(三号 黑体)，字间空一格，标点符号占一格。“摘要”二字下空一行打印 内容(四号宋体)。每段开头空二格，标点符号占一格。摘要内容后 下空一行打印“关键字”三字(四号黑体字)，其后为关键词(四号 宋体)。英文摘要题目全部采用Arial字体，可分成1-3行居中打印， 以下均用五号Arial字体。
+
 \sufe@define@key{
   keywords,
   keywords* = {
@@ -224,21 +228,19 @@
   },
 }
 
-\RequirePackage{xparse}
-\ExplSyntaxOn
-\NewDocumentCommand{\sufe@clist@use}{mm}
-{
-    \def\sufe@@tmp{}%
-    \clist_map_inline:nn {#1}{
-        \ifx\sufe@@tmp\@empty
-            \def\sufe@@tmp{#2}
-        \else
-            #2
-        \fi
-        ##1%
-    }
-}
-\ExplSyntaxOff
+\newcommand\sufe@clist@use[2]{%
+  \def\sufe@@tmp{}%
+  \def\sufe@clist@processor##1{%
+    \ifx\sufe@@tmp\@empty
+      \def\sufe@@tmp{#2}%
+    \else
+      #2%
+     \fi
+     ##1%
+   }%
+   \comma@parse{#1}{\sufe@clist@processor}%
+   \expandafter\comma@parse\expandafter{#1}{\sufe@clist@processor}%
+ }
 
 %%%%%%%%%%通过sufesetup命令可以读入关键字并格式化%%%%%
 \newbox\sufe@kw
@@ -252,24 +254,47 @@
  %%%%%%%%%%%%%中文摘要%%%%%%%%%%%%%
  \newcommand{\cabstractname}{摘要}
 \renewenvironment{abstract}{%
-  % \sufe@chapter*[]{\cabstractname} % no tocline
+  \section*{\sufe@title}
   \section*{\cabstractname}
-}{%
-  \sufe@put@keywords{\textbf{关键字：}}{%
-    \sufe@clist@use{\sufe@keywords}{；}%
+  \songti\zihao{4} %摘要内容是宋体4号
+}{%摘要内容后 下空一行打印“关键字”三字(四号黑体字)，其后为关键词(四号 宋体)。
+\\%空行不要动
+\\%空行不要动
+  \heiti\zihao{4} \sufe@put@keywords{\textbf{关键字：}}{%
+  \songti\zihao{4}  \sufe@clist@use{\sufe@keywords}{；}%
+   
   }%
+  \thispagestyle{empty}
+  \newpage
 }
 
  %%%%%%%%%%%%%英文摘要%%%%%%%%%%%%%
 \newcommand{\eabstractname}{Abstract}
 \newenvironment{abstract*}{%
+  \section*{\sufe@title@en}
   \section*{\eabstractname}
+  \zihao{5}
 }{%
-  \sufe@put@keywords{%
-    \textbf{Key Words:}%
-  }{%
+\\%空行不要动
+\\%空行不要动
+  \sufe@put@keywords{\textbf{Key Words:}}{%
     \sufe@clist@use{\sufe@keywords@en}{; }%
   }%
+  \thispagestyle{empty}
+  \newpage
 }
 
-
+%%%%%%%%%%%%%%声明页%%%%%%%%%%%%%%%
+\newcommand{\statement}{\clearpage\newpage 
+\vspace*{1em}
+\begin{center}
+\zihao{1}\heiti \textbf{声\hspace*{1.5em}明}
+\end{center}
+\vspace*{1em}
+\zihao{2}\heiti \par 本人郑重声明所呈交的论文是我个人在指导老师的指导下进行的研究工作及取得的研究成果，不存在任何剽窃、抄袭他人学术成果的现象。我同意（ \hspace*{1.5em}  ）/ 不同意（ \hspace*{1.5em}  ）本论文作为学校的信息资料使用。
+\vskip 4.5 cm   
+\hspace*{6em}   论文作者（签名）  
+\vskip 1 cm 
+\thispagestyle{empty}
+    
+}

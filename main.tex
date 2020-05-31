@@ -4,48 +4,15 @@
 \input{sufesetup.tex} 
 
 \begin{document}
-
+%%%%定义一级小标题(section)，二级小标题(subsection)，三级小标题(subsubsection)字体字号， 四级"（1）"还未定义
 \titleformat
 
 \maketitle
 
 \input{abstract.tex}
 
-\thispagestyle{empty}
-\begin{center}
-\zihao{3} \LaTeX Template for SHUFE
-\end{center}
-
-\begin{center}
-\zihao{3}{Abstract}
-\end{center}
- 
-\begin{adjustwidth}{1cm}{1cm}
-\hspace{1.5em}
-An abstract of a dissertation is a summary and extraction of research work
-and contributions. Included in an abstract should be description of research
-topic and research objective, brief introduction to methodology and research
-process, and summarization of conclusion and contributions of the
-research. An abstract should be characterized by independence and clarity and
-carry identical information with the dissertation. It should be such that the
-general idea and major contributions of the dissertation are conveyed without
-reading the dissertation.
-
-An abstract should be concise and to the point. It is a misunderstanding to
-make an abstract an outline of the dissertation and words ``the first
-chapter'', ``the second chapter'' and the like should be avoided in the
-abstract.
-
-Key words are terms used in a dissertation for indexing, reflecting core
-information of the dissertation. An abstract may contain a maximum of 5 key
-words, with semi-colons used in between to separate one another.\\
-\\
-\textbf{Key words:} thesis, template, \LaTeX, \TeX, CJK 
-\end{adjustwidth}
-
 \newpage
 
-\thispagestyle{empty}
 \zihao{5}
 \heiti
 \tableofcontents
@@ -54,7 +21,8 @@ words, with semi-colons used in between to separate one another.\\
 
 
 \setcounter{page}{1}
-\section{前言}
+\section{序言}
+序言应说明本课题的意义、目的、主要研究内容、范围及应解决的问题。
 \subsection{研究背景及意义}
 
 \subsection{研究现状与评价}
@@ -65,24 +33,51 @@ words, with semi-colons used in between to separate one another.\\
 \subsection{文章基本思路与结构}
 
 
-\section{检验方法概述}
+\section{论文格式概述}
 
-\subsection{参数检验方法}
+\subsection{正文之前}
 
-\subsubsection{检验方法一}
-\subsubsection{检验方法二}
+\subsubsection{封页}
 
-\subsection{非参数检验方法}
+封页上的内容一律按照统一封面的样张式样打印，必须正 确无误。题目用二号黑体字，其他用四号宋体字。
 
-\subsubsection{检验方法一}
-\subsubsection{检验方法二}
+\subsubsection{题目和摘要}
 
-\section{数值模拟}
-%%%%size
-%rho theta
-%non-stationarity tvFARIMA: 1st order 2nd order with trend
-%T
-\subsection{模型介绍}
+论文(设计)题目为三号黑体字，可以分为1或2行 居中打印。论文(设计)题目下空一项居中打印“摘要”二字(三号 黑体)，字间空一格，标点符号占一格。“摘要”二字下空一行打印 内容(四号宋体)。每段开头空二格，标点符号占一格。摘要内容后 下空一行打印“关键字”三字(四号黑体字)，其后为关键词(四号 宋体)。英文摘要题目全部采用Arial字体，可分成1-3行居中打印， 以下均用五号Arial字体。摘要以浓缩的形式概括研究课题的内容，中文摘要在 300汉字左右，英文摘要应与中文摘要基本相对应。关键词是表述论文(设计)主题内容信息的单词或 术语，关键词数量一般不超过6个。每一个关键词之间用逗号隔 开，最后一个关键词后不用标点符号。
+
+\subsubsection{目录}
+“目录”二字(三号黑体)，下空二行为章、节、小节及其开始页码。目录是论文(设计)各组成部分的小标题，文字应简 明扼要。目录按章节排列编写，标明页数，便于阅读。章节、小 节分别以一、(一)1.(1)等数字依次标出。要求标题层次清 晰。目录中的标题应与正文中的标题一致。
+
+\subsubsection{标题}
+每章标题以三号字黑体居中打印;“章”下空二行为“节”，以四 号黑体左起打印;“节”下空一行为“小节”，以五号黑体左起打印。换行打印 论文(设计)正文。论文(设计)题目应该简短、明确、有概括性;字数 要适当，一般不宜超过20个汉字。
+
+\subsection{正文格式要求}
+\subsubsection{正文}
+采用五号宋体字打印。正文是对研究工作的详细表述，一般由标题、文字、 图、表格和公式等部分组成。
+\subsubsection{图}
+图题若采用中英文对照时，其英文字体为五号正体，中文字体为五号 楷体。引用图应在图题的左上角标出文献来源;图号按章顺序编号，如图3-1为 第三章第一图。如图含有几个不同部分应将分图号标注在分图的左上角，并在图 题下列出各部分内容。\par
+一张图片大概这样，简单如图 \ref{fig:hanhan} 所示。
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=0.45\linewidth]{图片1.jpg}
+  \caption{实验数据的图片}
+  \label{fig:hanhan}
+\end{figure} 
+多张图片，网上也有很多方法。
+% 简单如图 \ref{fig:hanhan1} 所示。
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.45\linewidth]{图片1.jpg}
+%   \includegraphics[width=0.45\linewidth]{图片1.jpg}
+%   \includegraphics[width=0.45\linewidth]{图片1.jpg}
+%   \includegraphics[width=0.45\linewidth]{图片1.jpg}
+%   \caption{实验数据的图片}
+%   \label{fig:hanhan1}
+% \end{figure} 
+\subsubsection{表格}
+表格按章顺序编号，如表3-1为第三章第一表。表应有标题，表内必须按规定的符号注明单位。
+\subsubsection{公式}
+公式书写应在文中另起一行。并使用英文标点。
 考虑模型\eqref{eq1}
 \begin{equation}
 y_i = \mu(t_i) + e_i, \quad i = 1,2,\dots n,
@@ -92,33 +87,17 @@ y_i = \mu(t_i) + e_i, \quad i = 1,2,\dots n,
 \begin{equation}
   \begin{aligned}
   y_i &= \mu(t_i) + e_i\\
-      &= \mu(t_i) + e_i\\
+      &= \mu(t_i) + e_i.\\
   \end{aligned}
 \end{equation}
 
-
-\subsection{构建指标体系}
-
-
-\subsection{模拟过程及结果分析}
-数据图片表格之外还要有分析！不会用就去百度BING一下，这里介绍一些简单操作。
-\subsubsection{图片}
-一张图片，网上也有其他方法（不喜勿喷）
-\begin{figure}[!ht]
-  \centering
-  \includegraphics[width=0.45\linewidth]{图片1.jpg}
-  \caption{实验数据的图片}
-\end{figure} 
-多张图片，网上也有其他方法（不喜勿喷)，图 \ref{fig:hanhan} 所示。
-\begin{figure}
-  \centering
-  \includegraphics[width=0.45\linewidth]{图片1.jpg}
-  \includegraphics[width=0.45\linewidth]{图片1.jpg}
-  \includegraphics[width=0.45\linewidth]{图片1.jpg}
-  \includegraphics[width=0.45\linewidth]{图片1.jpg}
-  \caption{实验数据的图片}
-  \label{fig:hanhan}
-\end{figure} 
+\subsubsection{参考文献}
+毕业论文(设计)不可缺少的组成部分，也是作者对他人知识
+成果的承认和尊重。参考文献一律列于文末。连续出版物(期刊):序号 作者，题名刊名，出版年，期号，起止 日;
+专著:序号 作者，书名，版本(第1版不标注)，出版地，出版年， 起止页码; 论文集:序号，作者，题名，主编，论文集名，出版地，出版年，起 止页码;
+学位论文:序号 题名;【学位论文】(英文用【Dissertation】),
+保存地点，保存单位，年份。\par
+使用方法：在导出bib格式文献引用，将内容复制到main.bib，之后直接使用“cite”，如文献中指出\cite{guegan2005can},\citet{guegan2005can}和\citet{dahlhaus1997}指出，文献中指出\cite{guegan2005can,dahlhaus1997}等用法。
 
 
 \section{实证分析}
@@ -143,16 +122,19 @@ y_i = \mu(t_i) + e_i, \quad i = 1,2,\dots n,
 不足和未来发展方向
 
 \newpage
-% \bibliographystyle{gbt7714-numerical}
-% \bibliography{main}
+
+\bibstyle{gbt7714-numerical}
+\bibliography{main}
  
 \section{附录}
-一些不想放在正文的细节。
+一些不想放在正文的细节。不宜放在正文中，但有参考价值的内容。如调查问卷、 公式推演、编写程序、原始数据附表等。
 \subsection{核心代码}
 \subsubsection{检验统计量计算}
+可以直接从文件中导入代码。见注释。
 % \lstinputlisting[language=r]{Statistic.R}
 
-% \includepdf[pages={1}]{声明.pdf} 
 
+\statement %声明页
+\hfill 2020年5月8日 %日期
 
 \end{document}
