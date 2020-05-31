@@ -163,6 +163,7 @@
 \renewcommand\thefigure{\thesection-\arabic{figure}}%图4-1：%就是这种东西也要调
 \renewcommand\thetable{\thesection-\arabic{table}}%表4-1：%就是这种东西也要调
 
+%%
 \renewcommand\maketitle{
     \pagestyle{plain}
 \thispagestyle{empty}
