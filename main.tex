@@ -5,17 +5,7 @@
 
 \begin{document}
 
-\ctexset{
-  section = {
-    name={,、 },number={\chinese{section}},format={\centering\heiti\zihao{3}},afterskip={2ex},beforeskip={2ex}, aftername={}
-  },%出来是 一、标题
-  subsection = {
-    name={(,)},number={\chinese{subsection}},format={\heiti\zihao{4}},afterskip={2ex},beforeskip={2ex},aftername={ }
-  },%出来是 (一) 标题
-  subsubsection = {
-    name={,.},number=\arabic{subsubsection},format={\heiti\zihao{5}},afterskip={2ex},beforeskip={2ex},aftername={ }
-  }%出来是 1.标题
-}
+\titleformat
 
 \maketitle
 
@@ -153,8 +143,8 @@ y_i = \mu(t_i) + e_i, \quad i = 1,2,\dots n,
 不足和未来发展方向
 
 \newpage
-\bibliographystyle{gbt7714-numerical}
-\bibliography{main}
+% \bibliographystyle{gbt7714-numerical}
+% \bibliography{main}
  
 \section{附录}
 一些不想放在正文的细节。
