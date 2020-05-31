@@ -153,13 +153,14 @@
 \geometry{a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm}
 
 %%%%%%%目录
+\renewcommand{\baselinestretch}{1.6}
 \renewcommand\tableofcontents{%
   \section*{目录}
   \heiti\@starttoc{toc}\songti
   \thispagestyle{empty}
 }
 % \renewcommand{\contentsname}{\heiti \zihao{3} 目录~\\~\\}
-% \renewcommand{\baselinestretch}{1.6}
+
 %  %就是一些目录里面空格的小问题， subsubsection的序号不要离标题太远
 \titlecontents{subsubsection}[4em]{\heiti\zihao{5}}{\contentslabel{2ex}}{\hspace*{-2em}}{~\titlerule*[0.6pc]{$.$}~\contentspage}
 

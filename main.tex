@@ -72,7 +72,7 @@
 \subsubsection{表格}
 表格按章顺序编号，如表3-1为第三章第一表。表应有标题，表内必须按规定的符号注明单位。
 对表格来说并排表格既可以像图~\ref{tab:parallel1}、
-表\ref{tab:parallel2} 使用小页环境，也可以如表\ref{tab:subtable} 使用子表格来做。
+表\ref{tab:parallel2} 使用小页环境，也可以如表\ref{tab:subtable} 使用子表格来做。R语言可以使用xtable程序包直接导出表格代码，复制粘贴一下就ok。
 
 \begin{table}[htbp]
 \noindent\begin{minipage}{0.5\textwidth}
@@ -80,9 +80,9 @@
 \caption{第一个并排子表格}
 \label{tab:parallel1}
 \begin{tabular}{p{2cm}p{2cm}}
-\toprule[1.5pt]
-111 & 222 \\\midrule[1pt]
-222 & 333 \\\bottomrule[1.5pt]
+\toprule
+111 & 222 \\\midrule
+222 & 333 \\\bottomrule
 \end{tabular}
 \end{minipage}%
 \begin{minipage}{0.5\textwidth}
@@ -90,12 +90,43 @@
 \caption{第二个并排子表格}
 \label{tab:parallel2}
 \begin{tabular}{p{2cm}p{2cm}}
-\toprule[1.5pt]
-111 & 222 \\\midrule[1pt]
-222 & 333 \\\bottomrule[1.5pt]
+\toprule
+111 & 222 \\\midrule
+222 & 333 \\\bottomrule
 \end{tabular}
 \end{minipage}
 \end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{并排子表格}
+\label{tab:subtable}
+\subcaptionbox{第一个子表格}
+{
+\begin{tabular}{c|c|c}
+\hline
+模型 & 得分1 &得分2 \\
+\hline
+a &111 & 222 \\
+b &222 & 333 \\
+\hline
+\end{tabular}
+}
+\hskip2cm
+\subcaptionbox{第二个子表格}
+{
+\begin{tabular}{c|c|c}
+\hline
+模型 & 得分1 &得分2 \\
+\hline
+a &111 & 222 \\
+b &222 & 333 \\
+\hline
+\end{tabular}
+}
+\end{table}
+
 
 \subsubsection{公式}
 公式书写应在文中另起一行。并使用英文标点。
